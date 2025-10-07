@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileChunker {
-    private static final int CHUNK_SIZE = 256 * 1024;
+    public static final int CHUNK_SIZE = 256 * 1024;
     private static final String HASH_ALGO = "SHA-256";
 
     public static List<byte[]> chunkFile(String filePath) throws IOException {
