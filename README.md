@@ -44,7 +44,15 @@ This is a Java project implementing a simple distributed file storage system ins
 
 text
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   DistributedFileSystem/  ├── pom.xml                  # Maven config  ├── src/  │   └── com/wejden/distfs/   # Package  │       ├── FileChunker.java # Chunking & hashing  │       ├── TorrentGenerator.java #.torrent creation  │       ├── PeerHandler.java # P2P server/client  │       └── TrackerAnnouncer.java #Peer discovery  └── target/                  # Compiled classes (auto-generated)   `
+ DistributedFileSystem/
+ ├── pom.xml                  # Maven config  
+ ├── src/   
+    └── com/wejden/distfs/  # Package       
+       ├── FileChunker.java # Chunking & hashing   
+       ├── TorrentGenerator.java #.torrent creation      
+       ├── PeerHandler.java # P2P server/client        
+       └── TrackerAnnouncer.java #Peer discovery  
+└── target/                  # Compiled classes (auto-generated)   
 
 ### How It Works
 
