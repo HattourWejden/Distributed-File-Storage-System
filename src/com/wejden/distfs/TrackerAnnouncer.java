@@ -48,16 +48,14 @@ public class TrackerAnnouncer {
         }
     }
 
-    // Simple .torrent parser: Extract 'info' dict as string (for hash)
     private static String extractInfoDict(String torrentPath) throws IOException {
         try (FileInputStream fis = new FileInputStream(torrentPath)) {
             byte[] buffer = new byte[1024];
             int bytesRead = fis.read(buffer);
             String bencode = new String(buffer, 0, bytesRead, StandardCharsets.ISO_8859_1);
-            // Find 'd4:infod...' to 'ee' (simplified—assumes small torrent)
             int infoStart = bencode.indexOf("4:infod");
             if (infoStart == -1) throw new IOException("Invalid torrent");
-            infoStart += 8; // Skip to after 'd'
+            infoStart += 6; // Skip "4:info" to sub 'd'
             int infoEnd = bencode.indexOf("ee", infoStart);
             if (infoEnd == -1) throw new IOException("Invalid info dict");
             return bencode.substring(infoStart, infoEnd);
