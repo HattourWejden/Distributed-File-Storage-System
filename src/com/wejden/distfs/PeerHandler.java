@@ -22,30 +22,24 @@ public class PeerHandler {
             System.out.println("Client connected from " + client.getInetAddress());
 
             try (DataInputStream in = new DataInputStream(client.getInputStream());
-                 DataOutputStream out = new DataOutputStream(client.getOutputStream());
-                 RandomAccessFile raf = new RandomAccessFile(filePath, "r")) {
+                 DataOutputStream out = new DataOutputStream(client.getOutputStream())) {
 
-                // Simple handshake: Send "OK" (mock BitTorrent handshake)
+                // Simple handshake: Send "OK"
                 out.writeUTF("OK");
 
-                // Receive bitfield request (mock: client sends chunk index as int)
+                // Receive chunk index request
                 int chunkIndex = in.readInt();
                 if (chunkIndex < 0 || chunkIndex >= allChunks.size()) {
                     System.out.println("Invalid chunk index: " + chunkIndex);
                     continue;
                 }
 
-                // Send chunk length first
+                // Send pre-loaded chunk directly (no re-read)
                 byte[] chunk = allChunks.get(chunkIndex);
                 out.writeInt(chunk.length);
+                out.write(chunk);  // Sends full chunk
 
-                // Seek and send chunk bytes
-                long offset = chunkIndex * FileChunker.CHUNK_SIZE;
-                raf.seek(offset);
-                raf.readFully(chunk); // Read exact chunk
-                out.write(chunk);
-
-                // Optional: Send hash for verification (client-side check)
+                // Send hash for verification
                 out.writeUTF(expectedHashes.get(chunkIndex));
 
                 System.out.println("Sent chunk " + chunkIndex + " (" + chunk.length + " bytes)");
@@ -85,8 +79,12 @@ public class PeerHandler {
             // Verify hash
             String receivedHash = in.readUTF();
             List<String> computedHashes = FileChunker.hashChunks(List.of(chunk));
-            if (!computedHashes.get(0).equals(expectedHash) || !receivedHash.equals(expectedHash)) {
-                throw new IOException("Hash mismatch for chunk " + chunkIndex + "! Expected: " + expectedHash);
+            String computedHash = computedHashes.get(0);
+            System.out.println("Debug - Expected: " + expectedHash);
+            System.out.println("Debug - Received from server: " + receivedHash);
+            System.out.println("Debug - Computed on client: " + computedHash);
+            if (!computedHash.equals(expectedHash) || !receivedHash.equals(expectedHash)) {
+                throw new IOException("Hash mismatch for chunk " + chunkIndex + "! Expected: " + expectedHash + " | Computed: " + computedHash + " | Received: " + receivedHash);
             }
 
             // Write to output file at offset
