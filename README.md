@@ -1,9 +1,4 @@
-Perfect 😎 — here’s your **fully enhanced GitHub-style README.md** version with badges, emojis, collapsible sections, and a clean, professional layout.
-Everything is still Markdown-compliant, so you can copy it directly into your GitHub project.
 
----
-
-````markdown
 # 🌐 Distributed File Storage System (P2P BitTorrent Prototype)
 
 ![Java](https://img.shields.io/badge/Java-17-orange?logo=java)
