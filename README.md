@@ -68,20 +68,20 @@ DistributedFileSystem/
 
 ## ⚡ How It Works
 
-### 🧩 1. Upload Preparation
+### 1. Upload Preparation
 
 * Input file (e.g., `test.txt`)
 * `FileChunker`: Splits file into 256KB chunks and computes SHA-256 hashes
 * `TorrentGenerator`: Builds `.torrent` metadata using BEncode (file size, hashes, piece size, tracker URL)
 
-### 🔄 2. P2P Sharing
+### 2. P2P Sharing
 
 * **Server (PeerHandler - server mode)**
   Loads chunks/hashes, listens on port `6881`, sends requested pieces
 * **Client (PeerHandler - client mode)**
   Connects, requests chunk, verifies hash, and writes to disk in correct order
 
-### 🌍 3. Peer Discovery
+### 3. Peer Discovery
 
 * `TrackerAnnouncer`:
   Extracts `info_hash` (SHA-1 of the info dictionary)
