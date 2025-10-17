@@ -115,28 +115,14 @@ java com.wejden.distfs.PeerHandler client test.torrent
 
 ## 🧾 Running Tests
 
-| Test Type             | Description                                       | How to Run                      |
-| --------------------- | ------------------------------------------------- | ------------------------------- |
-| 🧱 Chunking           | Splits file into pieces and prints SHA-256 hashes | `FileChunker.main()`            |
-| 🧩 Torrent Generation | Builds and prints `.torrent` metadata             | `TorrentGenerator.main()`       |
-| 🔗 P2P Transfer       | Transfers file between peers over sockets         | Run `PeerHandler` in both modes |
-| 🌐 Tracker Discovery  | Announces and retrieves peer list                 | `TrackerAnnouncer.main()`       |
+| Test Type           | Description                                       | How to Run                      |
+| ------------------- | ------------------------------------------------- | ------------------------------- |
+| Chunking          | Splits file into pieces and prints SHA-256 hashes | `FileChunker.main()`            |
+| Torrent Generation | Builds and prints `.torrent` metadata             | `TorrentGenerator.main()`       |
+| P2P Transfer      | Transfers file between peers over sockets         | Run `PeerHandler` in both modes |
+| Tracker Discovery | Announces and retrieves peer list                 | `TrackerAnnouncer.main()`       |
 
 ---
-
-<details>
-<summary>🚀 <b>Future Improvements</b></summary>
-
-* [ ] Support **multi-file torrents**
-* [ ] Implement full **DHT peer discovery**
-* [ ] Add **pause/resume** downloads
-* [ ] Build **GUI interface** for non-technical users
-* [ ] Add **encryption** and secure authentication
-
-</details>
-
----
-
 ## 🧰 Requirements
 
 * **Java JDK 17+**
