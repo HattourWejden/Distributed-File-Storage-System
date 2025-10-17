@@ -47,12 +47,12 @@ text
  DistributedFileSystem/
  ├── pom.xml                  # Maven config  
  ├── src/   
-    └── com/wejden/distfs/  # Package       
-       ├── FileChunker.java # Chunking & hashing   
-       ├── TorrentGenerator.java #.torrent creation      
-       ├── PeerHandler.java # P2P server/client        
-       └── TrackerAnnouncer.java #Peer discovery  
-└── target/                  # Compiled classes (auto-generated)   
+   └── com/wejden/distfs/  # Package       
+         ├── FileChunker.java # Chunking & hashing   
+         ├── TorrentGenerator.java #.torrent creation      
+         ├── PeerHandler.java # P2P server/client        
+         └── TrackerAnnouncer.java #Peer discovery  
+ └── target/                  # Compiled classes (auto-generated)   
 
 ### How It Works
 
